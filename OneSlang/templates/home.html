@@ -1,0 +1,2262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>Your Website</title>
+    <style>
+        /* Adding Poppins style */
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+        /* Whole page */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        /* Only body */
+        body {
+            height: 100vh;
+            width: 100%;
+            background-color: black;
+            display: flex;
+            flex-direction: column; /* Change to column to fix content layout */
+            align-items: flex-start; /* Change to flex-start to align content to the left */
+        }
+        .bg {
+    animation:slide 3s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, #030303 50%, rgb(31, 33, 33) 50%);
+    bottom:0;
+    left:-50%;
+    opacity:.5;
+    position:fixed;
+    right:-50%;
+    top:0;
+    z-index:-1;
+  }
+div
+{
+    word-wrap: break-word;
+}
+  .bg2 {
+    animation-direction:alternate-reverse;
+    animation-duration:4s;
+  }
+  
+  .bg3 {
+    animation-duration:3s;
+  }
+   @keyframes slide {
+    0% {
+      transform:translateX(-25%);
+    }
+    100% {
+      transform:translateX(25%);
+    }
+  }  
+
+
+        h1,
+        h2,
+        p,
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Making sidebar menu */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 110px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            background: linear-gradient(to left, rgba(0, 0, 0, 0.7), rgba(79, 79, 79, 0.4) 70%, rgba(208, 208, 208, 0));
+            transition: width 0.3s ease;
+            z-index: 2;
+        }
+
+        .sidebar:hover {
+            width: 260px;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(99, 99, 99, 0.4) 30%, rgba(197, 197, 197, 0));
+            z-index: 2;
+        }
+
+        /* Adding logo */
+        .sidebar .logo {
+            color: black;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 100px;
+            height: 100%;
+            border-radius: 50%;
+            transition: width 0.3s ease, height 0.3s ease;
+        }
+
+        .sidebar:hover .logo img {
+            display: block;
+            color: #ffffff;
+            width: 100px;
+            height: 100%;
+            margin-left: 0;
+            pointer-events: none;
+            margin-right: 80px;
+        }
+
+        /* Adding stuff to sidebar */
+        .sidebar .links {
+            list-style: none;
+            margin-top: 20px;
+            overflow-y: auto;
+            scrollbar-width: none;
+            height: calc(100% - 140px);
+            color: rgb(255, 255, 255);
+        }
+
+        .sidebar .links::-webkit-scrollbar {
+            display: none;
+        }
+
+        .links li {
+            display: flex;
+            border-radius: 4px;
+            align-items: center;
+        }
+
+        .links li:hover {
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .links h4 {
+            color: white;
+            font-weight: 500;
+            display: none;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .sidebar:hover .links h4 {
+            display: block;
+        }
+
+        .links hr {
+            margin: 10px 8px;
+            border: 1px solid #ffffff;
+        }
+
+        .sidebar:hover .links hr {
+            border-color: transparent;
+        }
+
+        .links li span {
+            padding: 12px 10px;
+        }
+
+        .links li a {
+            padding: 10px;
+            color: #ffffff;
+            display: none;
+            font-weight: 500;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+
+        .sidebar:hover .links li a {
+            display: block;
+            background: transparent;
+        }
+
+        .links .logout-link {
+            margin-top: 20px;
+        }
+
+        /* Making nav buttons and also changing colors */
+        .nav-button {
+            display: block;
+            padding: 10px 20px;
+            background-color: black;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease, padding 0.3s ease, font-size 0.3s ease;
+            text-align: center;
+        }
+
+        .nav-button:hover {
+            background-color: black;
+            padding: 12px 22px;
+            font-size: 20px;
+        }
+
+        /* Making side panels */
+        .links>li>ul {
+            position: absolute;
+            top: 10%;
+            left: 90%;
+            display: none;
+            background-color: transparent;
+            min-width: 200px;
+            min-height: 100%;
+            backdrop-filter: blur(20px);
+            z-index: 3;
+            border: none;
+        }
+
+        /* Style for the second-level dropdown menu */
+        .links>li>ul>li>ul {
+            position: absolute;
+            top: 10%;
+            left: 100%;
+            display: none;
+            background-color: transparent;
+            min-width: 200px;
+            border-radius: 4px;
+            min-height: 100%;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Show the dropdown menus on hover */
+        .links>li:hover>ul,
+        .links>li>ul>li:hover>ul {
+            display: block;
+        }
+
+        /* Style the dropdown menu items */
+        .links>li>ul>li,
+        .links>li>ul>li>ul>li {
+            display: block;
+            padding: 10px;
+        }
+
+        /* Style the dropdown menu links */
+        .links>li>ul>li>a,
+        .links>li>ul>li>ul>li>a {
+            color: white;
+            text-decoration: none;
+            white-space: nowrap;
+            margin-left: 50px;
+        }
+
+        /* Add a hover effect to the dropdown menu items */
+        .links>li>ul>li:hover,
+        .links>li>ul>li>ul>li:hover {
+            background-color: transparent;
+            width: 260px;
+            background: linear-gradient(to right, rgba(157, 138, 138, 0.7), rgba(157, 138, 138, 0.4) 30%, rgba(157, 138, 138, 0));
+        }
+
+        /* Writing code for background color and text color in the body */
+        :root {
+            --background: black;
+            --color: #FAFAFA;
+        }
+
+        /* Making logo which is at the rightmost corner */
+        .logo-right {
+            color: var(--color);
+            font-size: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            margin-right: 8px;
+        }
+
+        .right {
+            text-align: right;
+            width: 100%;
+        }
+
+        .stack {
+            display: grid;
+            grid-template-columns: 1fr;
+            z-index: 2;
+        }
+
+        .stack span {
+            font-weight: bold;
+            grid-row-start: 1;
+            grid-column-start: 1;
+            font-size: 3rem;
+            --stack-height: calc(100% / var(--stacks) - 1px);
+            --inverse-index: calc(calc(var(--stacks) - 1) - var(--index));
+            --clip-top: calc(var(--stack-height) * var(--index));
+            --clip-bottom: calc(var(--stack-height) * var(--inverse-index));
+            clip-path: inset(var(--clip-top) 0 var(--clip-bottom) 0);
+            animation: stack 340ms cubic-bezier(.46, .29, 0, 1.24) 1 backwards calc(var(--index) * 120ms), glitch 2s ease infinite 2s alternate-reverse;
+        }
+
+        .stack span:nth-child(odd) {
+            --glitch-translate: 8px;
+        }
+
+        .stack span:nth-child(even) {
+            --glitch-translate: -8px;
+        }
+
+        @keyframes stack {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%);
+                text-shadow: -2px 3px 0 red, 2px -3px 0 blue;
+            }
+
+            60% {
+                opacity: 0.5;
+                transform: translateX(50%);
+            }
+
+            80% {
+                transform: none;
+                opacity: 1;
+                text-shadow: 2px -3px 0 red, -2px 3px 0 blue;
+            }
+
+            100% {
+                text-shadow: none;
+            }
+        }
+
+        @keyframes glitch {
+            0% {
+                text-shadow: -2px 3px 0 red, 2px -3px 0 blue;
+                transform: translate(var(--glitch-translate));
+            }
+
+            2% {
+                text-shadow: 2px -3px 0 red, -2px 3px 0 blue;
+            }
+
+            4%,
+            100% {
+                text-shadow: none;
+                transform: none;
+            }
+        }
+
+        /* Taking above header */
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0px;
+            width: 100%;
+            display: flex;
+            background-color: rgb(219, 207, 207);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(110, 110, 110, 0.4) 70%, rgba(211, 211, 211, 0.164));
+            transition: width 0.3s ease;
+            z-index: 1;
+            /* Place it above other elements */
+            display: flex;
+            justify-content: space-between;
+            /* Align elements to the right */
+            align-items: center;
+            transition: transform 0.3s ease-in-out;
+    transform: translateY(0);
+        }
+        /* Add CSS for the hidden header state */
+header.hidden {
+    transform: translateY(-100%);
+}
+
+        /* Adjust the logo-right position to accommodate the header */
+        .stack {
+            position: relative;
+            --stacks: 3;
+            margin-left: 10px;
+            align-items: right;
+        }
+
+        .container {
+            max-width: 5000px;
+            /* Adjust the max width as needed */
+            margin: 0px auto;
+            /* Center the container horizontally and set top margin */
+            padding: 0px;
+            /* Add padding as needed */
+            height: calc(100% - 150px);
+            /* Adjust the height based on header size */
+            outline: none;
+        }
+
+        .co {
+            position: relative;
+            display: flex;
+            color: #FAFAFA;
+        }
+
+        .search-container {
+            overflow: hidden;
+            float: right;
+            height: 4em;
+            width: 4em;
+            border-radius: 2em;
+            box-shadow: 0 0 5px #000000;
+            -moz-transition: all 0.35s;
+            -webkit-transition: all 0.35s;
+        }
+
+        .search-container:hover,
+        .search-container:focus,
+        .search-container:focus-within {
+            width: 25em;
+            border-radius: 5px 2em 2em 5px;
+            outline: none;
+        }
+
+        .search-container:hover input,
+        .search-container:focus input,
+        .search-container:focus-within input {
+            display: inline-block;
+            width: 19em;
+            padding: 10px;
+        }
+
+        input {
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            appearance: none;
+            float: left;
+            width: 0em;
+            height: 2em;
+            margin: 1em;
+            margin-right: -4.5em;
+            background: #fff;
+            color: #000000;
+            font-size: 1em;
+            font-weight: 500;
+            padding: 0px;
+            border: 0;
+            border-radius: 5px;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2) inset;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+            -moz-transition: all 0.25s;
+            -webkit-transition: all 0.25s;
+        }
+
+        input:focus {
+            outline: none;
+            box-shadow: 0 -1px 1px rgba(255, 255, 255, 0.25), 0 1px 5px rgba(0, 0, 0, 0.15);
+    }
+
+    .button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      float: right;
+      width: 1.75em;
+      height: 1.75em;
+      margin: 0.125em;
+      background: #000000;
+      text-align: center;
+      font-size: 2em;
+      color: #FDF6E3;
+      border-radius: 50%;
+      box-shadow: 0 -1px 1px rgba(255, 255, 255, 0.25), 0 1px 1px rgba(0, 0, 0, 0.25);
+      text-shadow: 0 -2px 1px rgba(0, 0, 0, 0.3);
+    }
+
+    .button:active {
+      border: 0 !important;
+      text-shadow: 0 0 0;
+    }
+
+    .button i {
+      font-size: 85%;
+    }
+
+    .header-text {
+      font-size: 20px;
+      /* Adjust the font size as needed */
+      color: white;
+      /* Text color */
+      margin-left: 20px;
+      /* Adjust the margin as needed */
+      font-weight: bold;
+      /* Optionally, set the font weight */
+    }
+    .main-content {
+  margin: 20px; /* Adjust margin as needed */
+  color: white; /* Text color */
+  font-size: 18px; /* Adjust the font size as needed */
+  text-align: left; /* Adjust text alignment as needed */
+  left:  130px;
+}
+
+/* Style for the text within the main content section */
+.main-content p {
+  margin-top: 100px; /* Adjust margin as needed */
+  font-weight: bold; /* Optionally, set the font weight */
+  margin-left: 130px;
+}
+main {
+   
+    width: 100%;
+    margin: 0 auto;
+    background:    rgba(15, 15, 15, 0.5);
+    
+   
+}
+.product-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5); /* Use an RGBA color with an alpha value for transparency */
+    position: relative;
+    padding-bottom: 40px;
+     border: 2px solid #c7c7c7;
+     border-radius: 20px;
+     transition: border-width 0.5s;
+     padding: 40px;
+     margin: 10px;
+
+}
+  .product-info:hover {
+            border-width: 10px;
+        }
+    
+.product-photo {
+
+     max-width: 25%;
+    max-height:15%;
+    float: left;
+    position: relative;
+}
+.product-photo img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 80%;
+    float: left;
+    transition: transform 0.3s ease-in-out; /* Add a transition for the transform property */
+
+}
+
+.product-photo img:hover {
+    transform: scale(1.1); /* Increase the scale on hover to make it appear larger */
+}
+h1 {
+    color: rgb(254, 192, 106);
+}
+
+.product-photo img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+    float: left; /* Add this line to float the image to the left */
+}
+/* Your existing CSS styles here */
+
+/* Add styles for the neon button */
+.neon-button {
+    display: inline-block;
+    background: linear-gradient(to right, #ff6ec4, #7873f5);
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 25px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(255, 110, 196, 0.5);
+    align-self: auto;
+    margin-top: 10%;
+}
+a
+{
+    text-decoration: none;
+}
+/* Add hover effect for the button */
+.neon-button:hover {
+    background: linear-gradient(to right, #7873f5, #ff6ec4);
+    box-shadow: 0 0 10px rgba(255, 110, 196, 0.8);
+    text-decoration: none;
+}
+
+.product-description {
+    flex: 2;
+    padding: 20px;
+    word-wrap: break-word;
+    max-width: 60%;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 150px;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+  }
+  table {
+    border: 1px solid;
+  }
+
+
+footer {
+    background:  linear-gradient(rgba(49, 47, 47, 0.7), rgba(0, 0, 0, 0.2));
+    color: #957c7c;
+    padding: 20px 0;
+    margin-top: 20px;
+    position: relative;
+    border: none; /* Remove the default border */
+    margin-left: 200px;
+    padding-bottom: 20px;
+    border: 2px solid #343434;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 1000px;
+ 
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.social-media a {
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.social-media img {
+    width: 30px; /* Adjust the size of social media icons as needed */
+    height: 30px;
+}
+
+.company-info h3 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.extra-info p {
+    margin: 5px 0;
+}
+
+.table {
+    width: 80%;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    border-color: #957c7c;
+
+}
+.h1{
+    text-align: center;
+}
+p,td,th, h2 {
+    color: #ffffff; /* Default color (black in this example) */
+  
+}
+.h1 {
+    display: flex;
+    margin-left: 38%;
+}
+
+#footer {
+    scroll-snap-align: start;
+}
+
+
+#btn--yp {
+            box-sizing: content-box;
+            position: fixed;
+            z-index: 9;
+            bottom: 1em;
+            right: 1em;
+            border: solid 1em transparent;
+            width: 4.625em;
+            height: 3.25em;
+            background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/2017/icon-yp.svg) 50%/cover content-box;
+            font: 16px/1.25 trebuchet ms, sans-serif;
+            text-indent: 200vw;
+            text-shadow: none;
+            filter: grayscale(1) drop-shadow(0 0 1px #e8e0e0);
+            transition: 0.5s;
+            white-space: nowrap;
+        }
+
+        #btn--yp:before {
+            box-sizing: inherit;
+            position: absolute;
+            left: 0;
+            bottom: 100%;
+            margin: 1em -0.5em;
+            padding: 0.5em;
+            width: 100%;
+            border-radius: 5px;
+            background: #e8e0e0;
+            color: #000;
+            text-align: center;
+            text-decoration: none;
+            text-indent: 0vw;
+            white-space: normal;
+            animation: float 1s ease-in-out infinite alternate;
+            content: attr(data-txt);
+        }
+
+        #btn--yp:hover, #btn--yp:focus {
+            outline: none;
+            filter: grayscale(0) drop-shadow(0 0 1px crimson);
+        }
+
+        @keyframes float {
+            to {
+                transform: translateY(0.75em);
+            }
+        }
+
+        * {
+            margin: 0;
+        }
+
+        html {
+            scroll-snap-points-y: repeat(100vh);
+            scroll-snap-type: y mandatory;
+            background: #121212;
+            color: #ededed;
+            font: 1em indie flower;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        #firstPage,
+        figure {
+            display: grid;
+            grid-template: 100%/100%;
+            height: 100vh;
+            scroll-snap-align: start;
+        }
+
+        #firstPage > :first-child,
+        figure > :first-child {
+            place-self: center;
+        }
+
+        h2 {
+            max-width: 13em;
+            color: #219EBC;
+            font-size: clamp(.75em, 7.5vw, 4em);
+            text-align: center;
+        }
+
+        
+        figure {
+            --k: 1;
+            --j: calc(1 - var(--k));
+            overflow: hidden;
+            background: var(--url) 50%/cover;
+            animation: a 1s both;
+            animation-timeline: view();
+            animation-range: entry 85% entry 85%;
+        }
+
+        figure::before {
+            background: #fff1;
+            backdrop-filter: blur(50px);
+            content: "";
+        }
+
+        @keyframes a {
+            0% {
+                --k: 0 ;
+            }
+        }
+
+        ::before, img, figcaption {
+            grid-area: 1/1;
+            transition: 0.5s, 0.625s;
+        }
+
+        img {
+            --dr: calc(37.5vh + var(--j)*(100% - 2*37.5vh));
+            box-sizing: border-box;
+            padding: calc(var(--k)*37.5vh);
+            width: calc(min(90%, 50vh) + 2*37.5vh);
+            height: 150vh;
+            object-fit: cover;
+            clip-path: inset(37.5vh var(--dr) 37.5vh 37.5vh);
+            transition-property: clip-path, padding;
+            transition-timing-function: cubic-bezier(0.32, 1, 0.68, 1), cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        figcaption {
+            place-self: end;
+            z-index: 1;
+            padding: 1em;
+            translate: calc(var(--j)*-100%);
+            opacity: var(--k);
+            transition-property: opacity, translate;
+            transition-timing-function: cubic-bezier(0.32, 0, 0.68, 0), cubic-bezier(0.35, 1.65, 0.65, 1);
+        }
+
+        
+
+        .box {
+            margin: 1em;
+            border-left: solid 5px #dc3055;
+            padding: 1em;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.35);
+            background: #851d40;
+            color: #fff;
+            font: 1.25em/1.25 ubuntu, trebuchet ms, arial, sans-serif;
+        }
+
+        @supports (animation-range: exit 0% exit 0%) {
+            .box {
+                display: none;
+            }
+        }
+
+        code {
+            padding: 2px;
+            background: rgba(0, 0, 0, 0.35);
+            font: 1.1em/1.2 ubuntu mono, consolas, monaco, monospace;
+        }
+
+        em {
+            display: block;
+            font-size: 0.75em;
+            text-align: right;
+        }
+        /* Adding Poppins style */
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+        /* Whole page */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        /* Only body */
+        body {
+            height: 100vh;
+            width: 100%;
+            background-color: black;
+            display: flex;
+            flex-direction: column; /* Change to column to fix content layout */
+            align-items: flex-start; /* Change to flex-start to align content to the left */
+            overflow: hidden;
+            height: 100%;
+             overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+       
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+* {
+  padding: 0;
+  margin: 0 auto;
+}
+
+.imgLoader {
+  position: fixed;
+  -webkit-animation: preLoad 1s steps(1);
+          animation: preLoad 1s steps(1);
+  width: 1px;
+  height: 1px;
+}
+@-webkit-keyframes preLoad {
+  0% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+  }
+  10% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+  }
+  20% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+  }
+  30% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+  }
+  40% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+  }
+  100% {
+    display: none;
+  }
+}
+@keyframes preLoad {
+  0% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+  }
+  10% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+  }
+  20% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+  }
+  30% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+  }
+  40% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+  }
+  100% {
+    display: none;
+  }
+}
+
+.container1 {
+  position: relative;
+  width: 420px;
+  border: #fff solid 2px;
+  border-radius: 4px;
+  height: 420px;
+  font-family: "Indie Flower", cursive;
+  text-align: center;
+  margin-left: 130px;
+}
+
+.title {
+  position: absolute;
+  top: 130px;
+  left: 130px;
+  width: 100%;
+  font-size: 2em;
+  font-weight: normal;
+  line-height: 1;
+}
+
+.credit {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  font-size: 0.9em;
+  text-align: left;
+}
+
+.book {
+  position: relative;
+  perspective: 630px;
+  perspective-origin: center 50px;
+  transform: scale(1.2);
+  filter: drop-shadow(0px 10px 5px rgba(0, 0, 0, 0.25));
+}
+
+.page {
+  width: 210px;
+  height: 300px;
+  background-color: #bbb;
+  position: absolute;
+  top: 0px;
+  right: 50%;
+  transform-origin: 100% 100%;
+  border: solid #555 2px;
+  background-size: 420px 300px;
+  background-position: center;
+  transform-style: preserve-3d;
+}
+.page:nth-child(1) {
+  transform: rotateX(60deg) rotateY(3deg);
+}
+.page:nth-child(2) {
+  transform: rotateX(60deg) rotateY(4.5deg);
+}
+.page:nth-child(3) {
+  transform: rotateX(60deg) rotateY(6deg);
+  -webkit-animation: nextPage 25s infinite -24s steps(1);
+          animation: nextPage 25s infinite -24s steps(1);
+  background-size: 420px 300px;
+  background-position: -2px -2px;
+}
+.page:nth-child(4) {
+  transform: rotateX(60deg) rotateY(177deg);
+}
+.page:nth-child(5) {
+  transform: rotateX(60deg) rotateY(175.5deg);
+}
+.page:nth-child(6) {
+  transform: rotateX(60deg) rotateY(174deg);
+  overflow: hidden;
+}
+.page:nth-child(6)::after {
+  content: "";
+  width: 210px;
+  height: 300px;
+  position: absolute;
+  top: 0px;
+  right: 0%;
+  transform-origin: center;
+  transform: rotateY(180deg);
+  -webkit-animation: nextPage 25s -20s infinite steps(1);
+          animation: nextPage 25s -20s infinite steps(1);
+  background-size: 420px 300px;
+  background-position: 100% -2px;
+}
+@-webkit-keyframes nextPage {
+  0% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+  }
+  20% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+  }
+  40% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+  }
+  60% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+  }
+  80% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+  }
+}
+@keyframes nextPage {
+  0% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+  }
+  20% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+  }
+  40% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+  }
+  60% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+  }
+  80% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+  }
+}
+
+.gap {
+  width: 10px;
+  height: 300px;
+  background: none;
+  transform: rotateX(60deg);
+  transform-origin: bottom;
+  position: absolute;
+  top: 0px;
+  left: calc(50% - 5px);
+}
+.gap::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  background-color: #555;
+  width: 10px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+.pages, .flips {
+  transform-style: preserve-3d;
+}
+
+.flip {
+  width: 32px;
+  height: 300px;
+  position: absolute;
+  top: 0px;
+  transform-origin: 100% 100%;
+  right: 100%;
+  border: solid #555;
+  border-width: 2px 0px;
+  perspective: 4200px;
+  perspective-origin: center;
+  transform-style: preserve-3d;
+  background-size: 420px 300px;
+}
+.flip::after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 0%;
+  width: 100%;
+  height: 100%;
+  transform-origin: center;
+  background-size: 420px 300px;
+}
+.flip.flip1 {
+  right: 50%;
+  -webkit-animation: flip1 5s infinite ease-in-out;
+          animation: flip1 5s infinite ease-in-out;
+  border-width: 2px 2px 2px 0;
+}
+.flip.flip1::after {
+  -webkit-animation: nextFlip1 25s -20s infinite steps(1);
+          animation: nextFlip1 25s -20s infinite steps(1);
+}
+.flip:not(.flip1) {
+  right: calc(100% - 2px);
+  top: -2px;
+  transform-origin: right;
+  -webkit-animation: flip2 5s ease-in-out infinite;
+          animation: flip2 5s ease-in-out infinite;
+}
+.flip.flip2::after {
+  -webkit-animation: nextFlip2 25s -20s infinite steps(1);
+          animation: nextFlip2 25s -20s infinite steps(1);
+}
+.flip.flip3::after {
+  -webkit-animation: nextFlip3 25s -20s infinite steps(1);
+          animation: nextFlip3 25s -20s infinite steps(1);
+}
+.flip.flip4::after {
+  -webkit-animation: nextFlip4 25s -20s infinite steps(1);
+          animation: nextFlip4 25s -20s infinite steps(1);
+}
+.flip.flip5::after {
+  -webkit-animation: nextFlip5 25s -20s infinite steps(1);
+          animation: nextFlip5 25s -20s infinite steps(1);
+}
+.flip.flip6::after {
+  -webkit-animation: nextFlip6 25s -20s infinite steps(1);
+          animation: nextFlip6 25s -20s infinite steps(1);
+}
+.flip.flip7::after {
+  -webkit-animation: nextFlip7 25s -20s infinite steps(1);
+          animation: nextFlip7 25s -20s infinite steps(1);
+}
+.flip.flip7 {
+  width: 30px;
+  border-width: 2px 0px 2px 2px;
+}
+.flip.flip7::after {
+  -webkit-animation: nextFlip7 25s -20s infinite steps(1);
+          animation: nextFlip7 25s -20s infinite steps(1);
+}
+@-webkit-keyframes flip1 {
+  0%, 20% {
+    transform: rotateX(60deg) rotateY(6deg);
+  }
+  80%, 100% {
+    transform: rotateX(60deg) rotateY(174deg);
+  }
+}
+@keyframes flip1 {
+  0%, 20% {
+    transform: rotateX(60deg) rotateY(6deg);
+  }
+  80%, 100% {
+    transform: rotateX(60deg) rotateY(174deg);
+  }
+}
+@-webkit-keyframes flip2 {
+  0%, 20% {
+    transform: rotateY(0deg) translateY(0px);
+  }
+  50% {
+    transform: rotateY(-15deg) translateY(0px);
+  }
+}
+@keyframes flip2 {
+  0%, 20% {
+    transform: rotateY(0deg) translateY(0px);
+  }
+  50% {
+    transform: rotateY(-15deg) translateY(0px);
+  }
+}
+
+@-webkit-keyframes nextFlip1 {
+  0% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+    background-position: -178px -2px;
+    transform: rotateY(0deg);
+  }
+  10% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+    background-position: -210px -2px;
+    transform: rotateY(180deg);
+  }
+  20% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+    background-position: -178px -2px;
+    transform: rotateY(0deg);
+  }
+  30% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+    background-position: -210px -2px;
+    transform: rotateY(180deg);
+  }
+  40% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+    background-position: -178px -2px;
+    transform: rotateY(0deg);
+  }
+  50% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+    background-position: -210px -2px;
+    transform: rotateY(180deg);
+  }
+  60% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+    background-position: -178px -2px;
+    transform: rotateY(0deg);
+  }
+  70% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+    background-position: -210px -2px;
+    transform: rotateY(180deg);
+  }
+  80% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+    background-position: -178px -2px;
+    transform: rotateY(0deg);
+  }
+  90% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+    background-position: -210px -2px;
+    transform: rotateY(180deg);
+  }
+}
+
+@keyframes nextFlip1 {
+  0% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+    background-position: -178px -2px;
+    transform: rotateY(0deg);
+  }
+  10% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+    background-position: -210px -2px;
+    transform: rotateY(180deg);
+  }
+  20% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+    background-position: -178px -2px;
+    transform: rotateY(0deg);
+  }
+  30% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+    background-position: -210px -2px;
+    transform: rotateY(180deg);
+  }
+  40% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+    background-position: -178px -2px;
+    transform: rotateY(0deg);
+  }
+  50% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+    background-position: -210px -2px;
+    transform: rotateY(180deg);
+  }
+  60% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+    background-position: -178px -2px;
+    transform: rotateY(0deg);
+  }
+  70% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+    background-position: -210px -2px;
+    transform: rotateY(180deg);
+  }
+  80% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+    background-position: -178px -2px;
+    transform: rotateY(0deg);
+  }
+  90% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+    background-position: -210px -2px;
+    transform: rotateY(180deg);
+  }
+}
+@-webkit-keyframes nextFlip2 {
+  0% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+    background-position: -148px -2px;
+    transform: rotateY(0deg);
+  }
+  10.5% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+    background-position: -238px -2px;
+    transform: rotateY(180deg);
+  }
+  20% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+    background-position: -148px -2px;
+    transform: rotateY(0deg);
+  }
+  30.5% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+    background-position: -238px -2px;
+    transform: rotateY(180deg);
+  }
+  40% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+    background-position: -148px -2px;
+    transform: rotateY(0deg);
+  }
+  50.5% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+    background-position: -238px -2px;
+    transform: rotateY(180deg);
+  }
+  60% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+    background-position: -148px -2px;
+    transform: rotateY(0deg);
+  }
+  70.5% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+    background-position: -238px -2px;
+    transform: rotateY(180deg);
+  }
+  80% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+    background-position: -148px -2px;
+    transform: rotateY(0deg);
+  }
+  90.5% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+    background-position: -238px -2px;
+    transform: rotateY(180deg);
+  }
+}
+@keyframes nextFlip2 {
+  0% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+    background-position: -148px -2px;
+    transform: rotateY(0deg);
+  }
+  10.5% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+    background-position: -238px -2px;
+    transform: rotateY(180deg);
+  }
+  20% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+    background-position: -148px -2px;
+    transform: rotateY(0deg);
+  }
+  30.5% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+    background-position: -238px -2px;
+    transform: rotateY(180deg);
+  }
+  40% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+    background-position: -148px -2px;
+    transform: rotateY(0deg);
+  }
+  50.5% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+    background-position: -238px -2px;
+    transform: rotateY(180deg);
+  }
+  60% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+    background-position: -148px -2px;
+    transform: rotateY(0deg);
+  }
+  70.5% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+    background-position: -238px -2px;
+    transform: rotateY(180deg);
+  }
+  80% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+    background-position: -148px -2px;
+    transform: rotateY(0deg);
+  }
+  90.5% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+    background-position: -238px -2px;
+    transform: rotateY(180deg);
+  }
+}
+@-webkit-keyframes nextFlip3 {
+  0% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+    background-position: -118px -2px;
+    transform: rotateY(0deg);
+  }
+  11% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+    background-position: -268px -2px;
+    transform: rotateY(180deg);
+  }
+  20% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+    background-position: -118px -2px;
+    transform: rotateY(0deg);
+  }
+  31% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+    background-position: -268px -2px;
+    transform: rotateY(180deg);
+  }
+  40% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+    background-position: -118px -2px;
+    transform: rotateY(0deg);
+  }
+  51% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+    background-position: -268px -2px;
+    transform: rotateY(180deg);
+  }
+  60% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+    background-position: -118px -2px;
+    transform: rotateY(0deg);
+  }
+  71% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+    background-position: -268px -2px;
+    transform: rotateY(180deg);
+  }
+  80% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+    background-position: -118px -2px;
+    transform: rotateY(0deg);
+  }
+  91% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+    background-position: -268px -2px;
+    transform: rotateY(180deg);
+  }
+}
+@keyframes nextFlip3 {
+  0% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+    background-position: -118px -2px;
+    transform: rotateY(0deg);
+  }
+  11% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+    background-position: -268px -2px;
+    transform: rotateY(180deg);
+  }
+  20% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+    background-position: -118px -2px;
+    transform: rotateY(0deg);
+  }
+  31% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+    background-position: -268px -2px;
+    transform: rotateY(180deg);
+  }
+  40% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+    background-position: -118px -2px;
+    transform: rotateY(0deg);
+  }
+  51% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+    background-position: -268px -2px;
+    transform: rotateY(180deg);
+  }
+  60% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+    background-position: -118px -2px;
+    transform: rotateY(0deg);
+  }
+  71% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+    background-position: -268px -2px;
+    transform: rotateY(180deg);
+  }
+  80% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+    background-position: -118px -2px;
+    transform: rotateY(0deg);
+  }
+  91% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+    background-position: -268px -2px;
+    transform: rotateY(180deg);
+  }
+}
+@-webkit-keyframes nextFlip4 {
+  0% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+    background-position: -88px -2px;
+    transform: rotateY(0deg);
+  }
+  11.5% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+    background-position: -298px -2px;
+    transform: rotateY(180deg);
+  }
+  20% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+    background-position: -88px -2px;
+    transform: rotateY(0deg);
+  }
+  31.5% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+    background-position: -298px -2px;
+    transform: rotateY(180deg);
+  }
+  40% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+    background-position: -88px -2px;
+    transform: rotateY(0deg);
+  }
+  51.5% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+    background-position: -298px -2px;
+    transform: rotateY(180deg);
+  }
+  60% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+    background-position: -88px -2px;
+    transform: rotateY(0deg);
+  }
+  71.5% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+    background-position: -298px -2px;
+    transform: rotateY(180deg);
+  }
+  80% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+    background-position: -88px -2px;
+    transform: rotateY(0deg);
+  }
+  91.5% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+    background-position: -298px -2px;
+    transform: rotateY(180deg);
+  }
+}
+@keyframes nextFlip4 {
+  0% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+    background-position: -88px -2px;
+    transform: rotateY(0deg);
+  }
+  11.5% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+    background-position: -298px -2px;
+    transform: rotateY(180deg);
+  }
+  20% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+    background-position: -88px -2px;
+    transform: rotateY(0deg);
+  }
+  31.5% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+    background-position: -298px -2px;
+    transform: rotateY(180deg);
+  }
+  40% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+    background-position: -88px -2px;
+    transform: rotateY(0deg);
+  }
+  51.5% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+    background-position: -298px -2px;
+    transform: rotateY(180deg);
+  }
+  60% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+    background-position: -88px -2px;
+    transform: rotateY(0deg);
+  }
+  71.5% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+    background-position: -298px -2px;
+    transform: rotateY(180deg);
+  }
+  80% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+    background-position: -88px -2px;
+    transform: rotateY(0deg);
+  }
+  91.5% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+    background-position: -298px -2px;
+    transform: rotateY(180deg);
+  }
+}
+@-webkit-keyframes nextFlip5 {
+  0% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+    background-position: -58px -2px;
+    transform: rotateY(0deg);
+  }
+  12% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+    background-position: -328px -2px;
+    transform: rotateY(180deg);
+  }
+  20% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+    background-position: -58px -2px;
+    transform: rotateY(0deg);
+  }
+  32% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+    background-position: -328px -2px;
+    transform: rotateY(180deg);
+  }
+  40% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+    background-position: -58px -2px;
+    transform: rotateY(0deg);
+  }
+  52% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+    background-position: -328px -2px;
+    transform: rotateY(180deg);
+  }
+  60% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+    background-position: -58px -2px;
+    transform: rotateY(0deg);
+  }
+  72% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+    background-position: -328px -2px;
+    transform: rotateY(180deg);
+  }
+  80% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+    background-position: -58px -2px;
+    transform: rotateY(0deg);
+  }
+  92% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+    background-position: -328px -2px;
+    transform: rotateY(180deg);
+  }
+}
+@keyframes nextFlip5 {
+  0% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+    background-position: -58px -2px;
+    transform: rotateY(0deg);
+  }
+  12% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+    background-position: -328px -2px;
+    transform: rotateY(180deg);
+  }
+  20% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+    background-position: -58px -2px;
+    transform: rotateY(0deg);
+  }
+  32% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+    background-position: -328px -2px;
+    transform: rotateY(180deg);
+  }
+  40% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+    background-position: -58px -2px;
+    transform: rotateY(0deg);
+  }
+  52% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+    background-position: -328px -2px;
+    transform: rotateY(180deg);
+  }
+  60% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+    background-position: -58px -2px;
+    transform: rotateY(0deg);
+  }
+  72% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+    background-position: -328px -2px;
+    transform: rotateY(180deg);
+  }
+  80% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+    background-position: -58px -2px;
+    transform: rotateY(0deg);
+  }
+  92% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+    background-position: -328px -2px;
+    transform: rotateY(180deg);
+  }
+}
+@-webkit-keyframes nextFlip6 {
+  0% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+    background-position: -28px -2px;
+    transform: rotateY(0deg);
+  }
+  12.5% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+    background-position: -358px -2px;
+    transform: rotateY(180deg);
+  }
+  20% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+    background-position: -28px -2px;
+    transform: rotateY(0deg);
+  }
+  32.5% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+    background-position: -358px -2px;
+    transform: rotateY(180deg);
+  }
+  40% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+    background-position: -28px -2px;
+    transform: rotateY(0deg);
+  }
+  52.5% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+    background-position: -358px -2px;
+    transform: rotateY(180deg);
+  }
+  60% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+    background-position: -28px -2px;
+    transform: rotateY(0deg);
+  }
+  72.5% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+    background-position: -358px -2px;
+    transform: rotateY(180deg);
+  }
+  80% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+    background-position: -28px -2px;
+    transform: rotateY(0deg);
+  }
+  92.5% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+    background-position: -358px -2px;
+    transform: rotateY(180deg);
+  }
+}
+@keyframes nextFlip6 {
+  0% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+    background-position: -28px -2px;
+    transform: rotateY(0deg);
+  }
+  12.5% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+    background-position: -358px -2px;
+    transform: rotateY(180deg);
+  }
+  20% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+    background-position: -28px -2px;
+    transform: rotateY(0deg);
+  }
+  32.5% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+    background-position: -358px -2px;
+    transform: rotateY(180deg);
+  }
+  40% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+    background-position: -28px -2px;
+    transform: rotateY(0deg);
+  }
+  52.5% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+    background-position: -358px -2px;
+    transform: rotateY(180deg);
+  }
+  60% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+    background-position: -28px -2px;
+    transform: rotateY(0deg);
+  }
+  72.5% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+    background-position: -358px -2px;
+    transform: rotateY(180deg);
+  }
+  80% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+    background-position: -28px -2px;
+    transform: rotateY(0deg);
+  }
+  92.5% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+    background-position: -358px -2px;
+    transform: rotateY(180deg);
+  }
+}
+@-webkit-keyframes nextFlip7 {
+  0% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+    background-position: -2px -2px;
+    transform: rotateY(0deg);
+  }
+  13% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+    background-position: -388px -2px;
+    transform: rotateY(180deg);
+  }
+  20% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+    background-position: -2px -2px;
+    transform: rotateY(0deg);
+  }
+  33% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+    background-position: -388px -2px;
+    transform: rotateY(180deg);
+  }
+  40% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+    background-position: -2px -2px;
+    transform: rotateY(0deg);
+  }
+  53% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+    background-position: -388px -2px;
+    transform: rotateY(180deg);
+  }
+  60% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+    background-position: -2px -2px;
+    transform: rotateY(0deg);
+  }
+  73% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+    background-position: -388px -2px;
+    transform: rotateY(180deg);
+  }
+  80% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+    background-position: -2px -2px;
+    transform: rotateY(0deg);
+  }
+  93% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+    background-position: -388px -2px;
+    transform: rotateY(180deg);
+  }
+}
+@keyframes nextFlip7 {
+  0% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+    background-position: -2px -2px;
+    transform: rotateY(0deg);
+  }
+  13% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+    background-position: -388px -2px;
+    transform: rotateY(180deg);
+  }
+  20% {
+    background-image: url("https://picsum.photos/420/300?random=2");
+    background-position: -2px -2px;
+    transform: rotateY(0deg);
+  }
+  33% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+    background-position: -388px -2px;
+    transform: rotateY(180deg);
+  }
+  40% {
+    background-image: url("https://picsum.photos/420/300?random=3");
+    background-position: -2px -2px;
+    transform: rotateY(0deg);
+  }
+  53% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+    background-position: -388px -2px;
+    transform: rotateY(180deg);
+  }
+  60% {
+    background-image: url("https://picsum.photos/420/300?random=4");
+    background-position: -2px -2px;
+    transform: rotateY(0deg);
+  }
+  73% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+    background-position: -388px -2px;
+    transform: rotateY(180deg);
+  }
+  80% {
+    background-image: url("https://picsum.photos/420/300?random=5");
+    background-position: -2px -2px;
+    transform: rotateY(0deg);
+  }
+  93% {
+    background-image: url("https://picsum.photos/420/300?random=1");
+    background-position: -388px -2px;
+    transform: rotateY(180deg);
+  }
+}
+.path-cont {
+  position: fixed;
+  width: 20vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  color: #FBF7F490;
+  z-index: -10;
+}
+.path-cont {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: -10;
+    }
+.svgpath {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  path {
+    stroke: #FBF7F430;  
+  }
+}
+.obj {
+  position: absolute;
+  offset-path: polygon(51% 0%, 61% 7%, 69% 12%, 74% 18%, 72% 25%, 62% 29%, 45% 32%, 29% 32%, 13% 26%, 20% 19%, 37% 15%, 56% 15%, 68% 17%, 80% 24%, 82% 31%, 76% 37%, 67% 43%, 57% 49%, 44% 55%, 35% 60%, 26% 66%, 25% 70%, 30% 75%, 36% 81%, 46% 86%, 55% 91%, 65% 96%, 72% 99%);
+  position: absolute;
+  animation: followpath linear;
+  animation-timeline: scroll();
+}
+@keyframes followpath {
+  from {
+    offset-distance: 2%;
+  }
+  to {
+    offset-distance: 60%;
+  }
+}
+.obj {
+  --bg: white;
+  --brd: #ff6090;
+  width: 3vmin;
+  height: 1.5vmin;
+  border-top-right-radius: 30% 20%;
+  border-bottom-right-radius: 30% 20%;
+  border-top-left-radius: 30% 15%;
+  border-bottom-left-radius: 30% 15%;
+  border: 1px solid var(--brd);
+  border-width: .5vmin 2.5vmin .5vmin .8vmin;
+  box-shadow: 0 0 0 .08em #000;
+  background-color: var(--bg);
+}
+.path-cont:before {
+  content: '0%';
+  position: absolute;
+  left: 40%;
+}
+.path-cont:after {
+  content: '100%';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+
+
+    
+  </style>
+</head>
+
+<body>
+   <div class="bg"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="asset/ONESLANG (1).gif" alt="logo" />
+      </div>
+      <ul class="links">
+        <h4> Main Menu
+        </h4>
+        <li>
+          <span class="material-symbols-outlined">dashboard</span>
+          <a href="home.html" class="nav-button">Dashboard</a>
+        </li>
+        <li>
+          <span class="material-symbols-outlined">trending_up</span>
+          <a href="trend.html" class="nav-button">Trending</a>
+        </li>
+        <li>
+          <span class="material-symbols-outlined">forum</span>
+          <a href="feed.html" class="nav-button">Feedback</a>
+        </li>
+        <hr />
+        <h4>Niche</h4>
+        <li>
+          <span class="material-symbols-outlined">devices</span>
+          <a href="technology.html" class="nav-button">Technology</a>
+        </li>
+        <li>
+          <span class="material-symbols-outlined">styler</span>
+          <a href="style.html" class="nav-button">Styles</a>
+        </li>
+        <li>
+          <span class="material-symbols-outlined">sports_cricket</span>
+          <a href="sports.html" class="nav-button">Sports</a>
+        </li>
+        <li>
+          <span class="material-symbols-outlined">local_mall</span>
+          <a href="Accesories.html" class="nav-button">Accessories</a>
+        </li>
+        <li>
+          <span class="material-symbols-outlined">sports_cricket</span>
+          <a href="Health.html" class="nav-button">Health/beauty</a>
+        </li>
+        <li>
+          <span class="material-symbols-outlined">Money</span>
+          <a href="Money.html" class="nav-button">Make Money</a>
+        </li>
+        <hr />
+        <h4>Account</h4>
+        <li>
+          <span class="material-symbols-outlined">bar_chart</span>
+          <a href="#" class="nav-button">Overview</a>
+        </li>
+        <li>
+          <span class="material-symbols-outlined">mail</span>
+          <a href="#" class="nav-button">Inbox</a>
+        </li>
+        <li>
+          <span class="material-symbols-outlined">settings</span>
+          <a href="#" class="nav-button">Settings</a>
+        </li>
+        <li class="logout-link">
+          <span class="material-symbols-outlined">logout</span>
+          <a href="#" class="nav-button">Logout</a>
+        </li>
+      </ul>
+    </aside>
+
+    
+
+  
+
+
+  <!-- Main content section -->
+  <!-- Header -->
+  <header>
+    <div id="header">
+      <div class='container' tabindex='1'>
+        <div class='search-container' tabindex='1'>
+          <input placeholder='search' type='text'>
+          <a class='button'>
+            <i class='fa fa-search'></i>
+          </a>
+        </div>
+      </div>
+      <div class="header-text">
+        <div class="logo-right">
+
+          <div class="stack" style="--stacks: 3;">
+            <span style="--index: 0;">OneSlang</span>
+            <span style="--index: 1;">OneSlang</span>
+            <span style="--index: 2;">OneSlang</span>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+
+  <div class="main-content">
+    <div class="imgLoader"></div>
+
+<div class="container">
+
+  <h1 class="title">
+    Trending<br>for you
+  </h1>
+  <br>
+  <br>
+
+  <div class="book">
+    <div class="gap"></div>
+    <div class="pages">
+      <div class="page"></div>
+      <div class="page"></div>
+      <div class="page"></div>
+      <div class="page"></div>
+      <div class="page"></div>
+      <div class="page"></div>
+    </div>
+    <div class="flips">
+      <div class="flip flip1">
+        <div class="flip flip2">
+          <div class="flip flip3">
+            <div class="flip flip4">
+              <div class="flip flip5">
+                <div class="flip flip6">
+                  <div class="flip flip7"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="path-cont">
+<svg class="svgpath" preserveAspectRatio="none" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<path fill="none" stroke-dasharray="5,3" stroke="#0070f3" d="M51,0 L61,7 L69,12 L74,18 L72,25 L62,29 L45,32 L29,32 L13,26 L20,19 L37,15 L56,15 L68,17 L80,24 L82 31 L76,37 L67,43 L57,49 L44,55 L35,60 L26,66 L25,70 L30,75 L36,81 L46,86 L55,91 L65,96 L72,99"></path>
+</svg>
+<div class="obj"></div>
+</div>
+<div class="big-thing"> </div>
+
+</div>
+
+
+
+ 
+
+
+
+  <main>
+
+    <section>
+
+ 
+
+        <figure style="--url: url(https://images.unsplash.com/photo-1540968221243-29f5d70540bf?w=800)">
+            <img src="https://images.pexels.com/photos/3937174/pexels-photo-3937174.jpeg?auto=compress&cs=tinysrgb&w=800" alt="graceful yellow and white jellyfish"/>
+            <figcaption><a href="technology.html" class="neon-button">Explore Technology</a></figcaption>
+        </figure>
+        
+        <figure style="--url: url(https://images.unsplash.com/photo-1540968221243-29f5d70540bf?w=800)">
+            <img src="https://images.pexels.com/photos/1148960/pexels-photo-1148960.jpeg?auto=compress&cs=tinysrgb&w=800" alt="graceful yellow and white jellyfish"/>
+            <figcaption><a href="style.html" class="neon-button">Explore Fashion </a></figcaption>
+        </figure>
+        
+        <figure style="--url: url(https://images.unsplash.com/photo-1590013330451-3946e83e0392?w=800)">
+            <img src="https://i.pinimg.com/736x/7a/b8/cf/7ab8cf6fd402ebf0ea9637f1ea7075d7.jpg" alt="brown jellyfish in blue water"/>
+            <figcaption><a href="sports.html" class="neon-button">Explore Sports</a></figcaption>
+        </figure>
+        
+        <figure style="--url: url(https://images.unsplash.com/photo-1589682728270-232844f27822?w=800)">
+            <img src="https://images.pexels.com/photos/9826162/pexels-photo-9826162.png?auto=compress&cs=tinysrgb&w=800" alt="blue and white jellyfish"/>
+            <figcaption><a href="Accesories.html" class="neon-button">Explore Accessories</a></figcaption>
+        </figure>
+        
+        <figure style="--url: url(https://images.unsplash.com/photo-1627689777981-f0ff94b4449f?w=800)">
+            <img src="https://images.pexels.com/photos/8612034/pexels-photo-8612034.jpeg?auto=compress&cs=tinysrgb&w=800" alt="blue and brown jellyfish under water"/>
+            <figcaption><a href="Health.html" class="neon-button">Explore Health/Beauty</a></figcaption>
+        </figure>
+        
+        <figure style="--url: url(https://images.unsplash.com/photo-1573824969595-a76d4365a2e6?w=800)">
+            <img src="https://images.pexels.com/photos/316401/pexels-photo-316401.jpeg?auto=compress&cs=tinysrgb&w=800" alt="golden jellyfish in dark waters"/>
+            <figcaption><a href="Money.html" class="neon-button">Explore Make Money</a></figcaption>
+        </figure>
+        
+        <figure style="--url: url(https://images.unsplash.com/photo-1596135187959-562c650d98bc?w=800)">
+            <img src="https://images.pexels.com/photos/3127880/pexels-photo-3127880.jpeg?auto=compress&cs=tinysrgb&w=800" alt="golden jellyfish in water"/>
+            <figcaption><a href="about.html" class="neon-button">Explore About us</a></figcaption>
+        </figure>
+        
+
+      </section>
+      
+
+   
+</main>
+
+
+  
+
+<footer>
+  <div class="footer-content">
+      <div class="social-media">
+          <a href="" target="_blank"><img src="asset/face.png" alt="Facebook"></a>
+          <a href="https://twitter.com/OneSlang_" target="_blank"><img src="asset/twitter.png" alt="Twitter"></a>
+          <a href="https://www.instagram.com/oneslang_official/" target="_blank"><img src="asset/insta.png" alt="Instagram"></a>
+          <a href="#" target="_blank"><img src="asset/link.png" alt="LinkedIn"></a>
+      </div>
+      <div class="company-info">
+          <h3>OneSlang</h3>
+          <p>Electronic City Bangalore</p>
+          <p>aspenterprisestm@gmail.com</p>
+          <p>Phone: +91 9019488586</p>
+      </div>
+      <div class="extra-info">
+          <p>&copy; 2023 OneSlang. All rights reserved.</p>
+          <p>Privacy Policy</p>
+          <p>Terms of Service</p>
+      </div>
+  </div>
+</footer>
+
+      <script>
+
+    const header = document.querySelector('header');
+    let lastScrollY = 0; // Store the last scroll position
+
+    window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY > lastScrollY) {
+            // Scrolling down
+            header.classList.add('hidden');
+        } else {
+            // Scrolling up
+            header.classList.remove('hidden');
+        }
+
+        lastScrollY = currentScrollY;
+    });
+
+
+   
+    function performSearch() {
+      // Get the search input value
+      var searchQuery = document.getElementById('searchInput').value.toLowerCase();
+
+      // Perform your search logic here
+      // For demonstration purposes, navigate to a page based on the search query
+      switch (searchQuery) {
+        case 'smartphone':
+          window.location.href = 'smartphone.html';
+          break;
+        case 'item2':
+          window.location.href = 'item2.html';
+          break;
+        // Add more cases for other items
+        default:
+          alert('Item not found');
+      }
+    }
+  
+      </script>
+  
+</body>
+
+</html>

@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>Your Website</title>
+    <style>
+        /* Adding Poppins style */
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+        /* Whole page */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        /* Only body */
+        body {
+            height: 100vh;
+            width: 100%;
+            background-color: black;
+            display: flex;
+            flex-direction: column; /* Change to column to fix content layout */
+            align-items: flex-start; /* Change to flex-start to align content to the left */
+        }
+        .bg {
+    animation:slide 3s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, #030303 50%, rgb(31, 33, 33) 50%);
+    bottom:0;
+    left:-50%;
+    opacity:.5;
+    position:fixed;
+    right:-50%;
+    top:0;
+    z-index:-1;
+  }
+div
+{
+    word-wrap: break-word;
+}
+  .bg2 {
+    animation-direction:alternate-reverse;
+    animation-duration:4s;
+  }
+  
+  .bg3 {
+    animation-duration:3s;
+  }
+   @keyframes slide {
+    0% {
+      transform:translateX(-25%);
+    }
+    100% {
+      transform:translateX(25%);
+    }
+  }  
+
+
+        h1,
+        h2,
+        p,
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Making sidebar menu */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 110px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            background: linear-gradient(to left, rgba(0, 0, 0, 0.7), rgba(79, 79, 79, 0.4) 70%, rgba(208, 208, 208, 0));
+            transition: width 0.3s ease;
+            z-index: 2;
+        }
+
+        .sidebar:hover {
+            width: 260px;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(99, 99, 99, 0.4) 30%, rgba(197, 197, 197, 0));
+            z-index: 2;
+        }
+
+        /* Adding logo */
+        .sidebar .logo {
+            color: black;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 100px;
+            height: 100%;
+            border-radius: 50%;
+            transition: width 0.3s ease, height 0.3s ease;
+        }
+
+        .sidebar:hover .logo img {
+            display: block;
+            color: #ffffff;
+            width: 100px;
+            height: 100%;
+            margin-left: 0;
+            pointer-events: none;
+            margin-right: 80px;
+        }
+
+        /* Adding stuff to sidebar */
+        .sidebar .links {
+            list-style: none;
+            margin-top: 20px;
+            overflow-y: auto;
+            scrollbar-width: none;
+            height: calc(100% - 140px);
+            color: rgb(255, 255, 255);
+        }
+
+        .sidebar .links::-webkit-scrollbar {
+            display: none;
+        }
+
+        .links li {
+            display: flex;
+            border-radius: 4px;
+            align-items: center;
+        }
+
+        .links li:hover {
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .links h4 {
+            color: white;
+            font-weight: 500;
+            display: none;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .sidebar:hover .links h4 {
+            display: block;
+        }
+
+        .links hr {
+            margin: 10px 8px;
+            border: 1px solid #ffffff;
+        }
+
+        .sidebar:hover .links hr {
+            border-color: transparent;
+        }
+
+        .links li span {
+            padding: 12px 10px;
+        }
+
+        .links li a {
+            padding: 10px;
+            color: #ffffff;
+            display: none;
+            font-weight: 500;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+
+        .sidebar:hover .links li a {
+            display: block;
+            background: transparent;
+        }
+
+        .links .logout-link {
+            margin-top: 20px;
+        }
+
+        /* Making nav buttons and also changing colors */
+        .nav-button {
+            display: block;
+            padding: 10px 20px;
+            background-color: black;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease, padding 0.3s ease, font-size 0.3s ease;
+            text-align: center;
+        }
+
+        .nav-button:hover {
+            background-color: black;
+            padding: 12px 22px;
+            font-size: 20px;
+        }
+
+        /* Making side panels */
+        .links>li>ul {
+            position: absolute;
+            top: 10%;
+            left: 90%;
+            display: none;
+            background-color: transparent;
+            min-width: 200px;
+            min-height: 100%;
+            backdrop-filter: blur(20px);
+            z-index: 3;
+            border: none;
+        }
+
+        /* Style for the second-level dropdown menu */
+        .links>li>ul>li>ul {
+            position: absolute;
+            top: 10%;
+            left: 100%;
+            display: none;
+            background-color: transparent;
+            min-width: 200px;
+            border-radius: 4px;
+            min-height: 100%;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Show the dropdown menus on hover */
+        .links>li:hover>ul,
+        .links>li>ul>li:hover>ul {
+            display: block;
+        }
+
+        /* Style the dropdown menu items */
+        .links>li>ul>li,
+        .links>li>ul>li>ul>li {
+            display: block;
+            padding: 10px;
+        }
+
+        /* Style the dropdown menu links */
+        .links>li>ul>li>a,
+        .links>li>ul>li>ul>li>a {
+            color: white;
+            text-decoration: none;
+            white-space: nowrap;
+            margin-left: 50px;
+        }
+
+        /* Add a hover effect to the dropdown menu items */
+        .links>li>ul>li:hover,
+        .links>li>ul>li>ul>li:hover {
+            background-color: transparent;
+            width: 260px;
+            background: linear-gradient(to right, rgba(157, 138, 138, 0.7), rgba(157, 138, 138, 0.4) 30%, rgba(157, 138, 138, 0));
+        }
+
+        /* Writing code for background color and text color in the body */
+        :root {
+            --background: black;
+            --color: #FAFAFA;
+        }
+
+        /* Making logo which is at the rightmost corner */
+        .logo-right {
+            color: var(--color);
+            font-size: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            margin-right: 8px;
+        }
+
+        .right {
+            text-align: right;
+            width: 100%;
+        }
+
+        .stack {
+            display: grid;
+            grid-template-columns: 1fr;
+            z-index: 2;
+        }
+
+        .stack span {
+            font-weight: bold;
+            grid-row-start: 1;
+            grid-column-start: 1;
+            font-size: 3rem;
+            --stack-height: calc(100% / var(--stacks) - 1px);
+            --inverse-index: calc(calc(var(--stacks) - 1) - var(--index));
+            --clip-top: calc(var(--stack-height) * var(--index));
+            --clip-bottom: calc(var(--stack-height) * var(--inverse-index));
+            clip-path: inset(var(--clip-top) 0 var(--clip-bottom) 0);
+            animation: stack 340ms cubic-bezier(.46, .29, 0, 1.24) 1 backwards calc(var(--index) * 120ms), glitch 2s ease infinite 2s alternate-reverse;
+        }
+
+        .stack span:nth-child(odd) {
+            --glitch-translate: 8px;
+        }
+
+        .stack span:nth-child(even) {
+            --glitch-translate: -8px;
+        }
+
+        @keyframes stack {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%);
+                text-shadow: -2px 3px 0 red, 2px -3px 0 blue;
+            }
+
+            60% {
+                opacity: 0.5;
+                transform: translateX(50%);
+            }
+
+            80% {
+                transform: none;
+                opacity: 1;
+                text-shadow: 2px -3px 0 red, -2px 3px 0 blue;
+            }
+
+            100% {
+                text-shadow: none;
+            }
+        }
+
+        @keyframes glitch {
+            0% {
+                text-shadow: -2px 3px 0 red, 2px -3px 0 blue;
+                transform: translate(var(--glitch-translate));
+            }
+
+            2% {
+                text-shadow: 2px -3px 0 red, -2px 3px 0 blue;
+            }
+
+            4%,
+            100% {
+                text-shadow: none;
+                transform: none;
+            }
+        }
+
+        /* Taking above header */
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0px;
+            width: 100%;
+            display: flex;
+            background-color: rgb(219, 207, 207);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(110, 110, 110, 0.4) 70%, rgba(211, 211, 211, 0.164));
+            transition: width 0.3s ease;
+            z-index: 1;
+            /* Place it above other elements */
+            display: flex;
+            justify-content: space-between;
+            /* Align elements to the right */
+            align-items: center;
+            transition: transform 0.3s ease-in-out;
+    transform: translateY(0);
+        }
+        /* Add CSS for the hidden header state */
+header.hidden {
+    transform: translateY(-100%);
+}
+
+        /* Adjust the logo-right position to accommodate the header */
+        .stack {
+            position: relative;
+            --stacks: 3;
+            margin-left: 10px;
+            align-items: right;
+        }
+
+        .container {
+            max-width: 5000px;
+            /* Adjust the max width as needed */
+            margin: 0px auto;
+            /* Center the container horizontally and set top margin */
+            padding: 0px;
+            /* Add padding as needed */
+            height: calc(100% - 150px);
+            /* Adjust the height based on header size */
+            outline: none;
+        }
+
+        .co {
+            position: relative;
+            display: flex;
+            color: #FAFAFA;
+        }
+
+        .search-container {
+            overflow: hidden;
+            float: right;
+            height: 4em;
+            width: 4em;
+            border-radius: 2em;
+            box-shadow: 0 0 5px #000000;
+            -moz-transition: all 0.35s;
+            -webkit-transition: all 0.35s;
+        }
+
+        .search-container:hover,
+        .search-container:focus,
+        .search-container:focus-within {
+            width: 25em;
+            border-radius: 5px 2em 2em 5px;
+            outline: none;
+        }
+
+        .search-container:hover input,
+        .search-container:focus input,
+        .search-container:focus-within input {
+            display: inline-block;
+            width: 19em;
+            padding: 10px;
+        }
+
+        input {
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            appearance: none;
+            float: left;
+            width: 0em;
+            height: 2em;
+            margin: 1em;
+            margin-right: -4.5em;
+            background: #fff;
+            color: #000000;
+            font-size: 1em;
+            font-weight: 500;
+            padding: 0px;
+            border: 0;
+            border-radius: 5px;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2) inset;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+            -moz-transition: all 0.25s;
+            -webkit-transition: all 0.25s;
+        }
+
+        input:focus {
+            outline: none;
+            box-shadow: 0 -1px 1px rgba(255, 255, 255, 0.25), 0 1px 5px rgba(0, 0, 0, 0.15);
+    }
+
+    .button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      float: right;
+      width: 1.75em;
+      height: 1.75em;
+      margin: 0.125em;
+      background: #000000;
+      text-align: center;
+      font-size: 2em;
+      color: #FDF6E3;
+      border-radius: 50%;
+      box-shadow: 0 -1px 1px rgba(255, 255, 255, 0.25), 0 1px 1px rgba(0, 0, 0, 0.25);
+      text-shadow: 0 -2px 1px rgba(0, 0, 0, 0.3);
+    }
+
+    .button:active {
+      border: 0 !important;
+      text-shadow: 0 0 0;
+    }
+
+    .button i {
+      font-size: 85%;
+    }
+
+    .header-text {
+      font-size: 20px;
+      /* Adjust the font size as needed */
+      color: white;
+      /* Text color */
+      margin-left: 20px;
+      /* Adjust the margin as needed */
+      font-weight: bold;
+      /* Optionally, set the font weight */
+    }
+    .main-content {
+  margin: 20px; /* Adjust margin as needed */
+  color: white; /* Text color */
+  font-size: 18px; /* Adjust the font size as needed */
+  text-align: left; /* Adjust text alignment as needed */
+  left:  130px;
+}
+
+/* Style for the text within the main content section */
+.main-content p {
+  margin-top: 100px; /* Adjust margin as needed */
+  font-weight: bold; /* Optionally, set the font weight */
+  margin-left: 130px;
+}
+main {
+    width: 80%;
+    margin: 0 auto;
+    background:    rgba(15, 15, 15, 0.5);
+    padding: 20px;
+    border: 2px solid #343434;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 130px;
+}
+.product-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5); /* Use an RGBA color with an alpha value for transparency */
+    position: relative;
+    padding-bottom: 40px;
+     border: 2px solid #c7c7c7;
+     border-radius: 20px;
+     transition: border-width 0.5s;
+     padding: 40px;
+     margin: 10px;
+
+}
+  .product-info:hover {
+            border-width: 10px;
+        }
+    
+.product-photo {
+
+     max-width: 25%;
+    max-height:15%;
+    float: left;
+    position: relative;
+}
+.product-photo img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 80%;
+    float: left;
+    transition: transform 0.3s ease-in-out; /* Add a transition for the transform property */
+
+}
+
+.product-photo img:hover {
+    transform: scale(1.1); /* Increase the scale on hover to make it appear larger */
+}
+h1 {
+    color: rgb(254, 192, 106);
+}
+
+.product-photo img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+    float: left; /* Add this line to float the image to the left */
+}
+/* Your existing CSS styles here */
+
+/* Add styles for the neon button */
+.neon-button {
+    display: inline-block;
+    background: linear-gradient(to right, #ff6ec4, #7873f5);
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 25px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(255, 110, 196, 0.5);
+    align-self: auto;
+    margin-top: 10%;
+}
+a
+{
+    text-decoration: none;
+}
+/* Add hover effect for the button */
+.neon-button:hover {
+    background: linear-gradient(to right, #7873f5, #ff6ec4);
+    box-shadow: 0 0 10px rgba(255, 110, 196, 0.8);
+    text-decoration: none;
+}
+
+.product-description {
+    flex: 2;
+    padding: 20px;
+    word-wrap: break-word;
+    max-width: 60%;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 150px;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+  }
+  table {
+    border: 1px solid;
+  }
+
+
+footer {
+    background:  linear-gradient(rgba(49, 47, 47, 0.7), rgba(0, 0, 0, 0.2));
+    color: #957c7c;
+    padding: 20px 0;
+    margin-top: 20px;
+    position: relative;
+    border: none; /* Remove the default border */
+    margin-left: 200px;
+    padding-bottom: 20px;
+    border: 2px solid #343434;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 1000px;
+ 
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.social-media a {
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.social-media img {
+    width: 30px; /* Adjust the size of social media icons as needed */
+    height: 30px;
+}
+
+.company-info h3 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.extra-info p {
+    margin: 5px 0;
+}
+
+.table {
+    width: 80%;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    border-color: #957c7c;
+
+}
+.h1{
+    text-align: center;
+}
+p,td,th, h2 {
+    color: #ffffff; /* Default color (black in this example) */
+  
+}
+.h1 {
+    display: flex;
+    margin-left: 38%;
+}
+
+
+
+    
+  </style>
+</head>
+
+<body>
+   <div class="bg"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
+  <aside class="sidebar">
+    <div class="logo">
+      <img src="asset/ONESLANG (1).gif" alt="logo" />
+    </div>
+    <ul class="links">
+      <h4> Main Menu
+      </h4>
+      <li>
+        <span class="material-symbols-outlined">dashboard</span>
+        <a href="home.html" class="nav-button">Dashboard</a>
+      </li>
+      <li>
+        <span class="material-symbols-outlined">trending_up</span>
+        <a href="trend.html" class="nav-button">Trending</a>
+      </li>
+      <li>
+        <span class="material-symbols-outlined">forum</span>
+        <a href="feed.html" class="nav-button">Feedback</a>
+      </li>
+      <hr />
+      <h4>Niche</h4>
+      <li>
+        <span class="material-symbols-outlined">devices</span>
+        <a href="technology.html" class="nav-button">Technology</a>
+      </li>
+      <li>
+        <span class="material-symbols-outlined">styler</span>
+        <a href="style.html" class="nav-button">Styles</a>
+      </li>
+      <li>
+        <span class="material-symbols-outlined">sports_cricket</span>
+        <a href="sports.html" class="nav-button">Sports</a>
+      </li>
+      <li>
+        <span class="material-symbols-outlined">local_mall</span>
+        <a href="Accesories.html" class="nav-button">Accessories</a>
+      </li>
+      <li>
+        <span class="material-symbols-outlined">sports_cricket</span>
+        <a href="Health.html" class="nav-button">Health/Beauty</a>
+      </li>
+      <li>
+        <span class="material-symbols-outlined">Music_note</span>
+        <a href="Money.html" class="nav-button">Make Money</a>
+      </li>
+      <hr />
+      <h4>Account</h4>
+      <li>
+        <span class="material-symbols-outlined">bar_chart</span>
+        <a href="#" class="nav-button">Overview</a>
+      </li>
+      <li>
+        <span class="material-symbols-outlined">mail</span>
+        <a href="#" class="nav-button">Inbox</a>
+      </li>
+      <li>
+        <span class="material-symbols-outlined">settings</span>
+        <a href="#" class="nav-button">Settings</a>
+      </li>
+      <li class="logout-link">
+        <span class="material-symbols-outlined">logout</span>
+        <a href="#" class="nav-button">Logout</a>
+      </li>
+    </ul>
+  </aside>
+
+
+
+  <!-- Main content section -->
+  <!-- Header -->
+  <header>
+    <div id="header">
+      <div class='container' tabindex='1'>
+        <div class='search-container' tabindex='1'>
+          <input placeholder='search' type='text'>
+          <a class='button'>
+            <i class='fa fa-search'></i>
+          </a>
+        </div>
+      </div>
+      <div class="header-text">
+        <div class="logo-right">
+
+          <div class="stack" style="--stacks: 3;">
+            <span style="--index: 0;">OneSlang</span>
+            <span style="--index: 1;">OneSlang</span>
+            <span style="--index: 2;">OneSlang</span>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+ 
+   
+  <main>
+
+    <h1>Gadgets</h1>
+    <section class="product-info">
+        <div class="product-photo">
+            <img src="asset/po.png" alt="Smartphone Image">
+            <a href="smartphone.html" class="neon-button">Explore Smartphones</a>
+        </div>
+        <div class="product-description">
+            <h1>Smartphones</h1>
+            <p>Discover the latest features and innovations in smartphones. From high-performance cameras to cutting-edge processors, explore a world of connectivity and convenience in the palm of your hand.</p>
+        </div>
+    </section>
+    
+    <section class="product-info">
+        <div class="product-photo">
+            <img src="https://images.pexels.com/photos/1334597/pexels-photo-1334597.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Tablet Image">
+            <a href="tablet.html" class="neon-button">Explore Tablets</a>
+        </div>
+        <div class="product-description">
+            <h1>Tablets</h1>
+            <p>Immerse yourself in the world of tablets. Whether for work or play, discover portable computing power with sleek designs and vibrant displays. Stay productive and entertained on the go.</p>
+        </div>
+    </section>
+
+    <section class="product-info">
+        <div class="product-photo">
+            <img src="https://images.pexels.com/photos/7974/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=800" alt="Laptop Image">
+            <a href="laptop.html" class="neon-button">Discover Laptops</a>
+        </div>
+        <div class="product-description">
+            <h1>Laptops</h1>
+            <p>Power up your productivity with the latest laptops. From lightweight ultrabooks to powerful gaming machines, find the perfect balance of performance and portability for your needs.</p>
+        </div>
+    </section>
+
+    <section class="product-info">
+        <div class="product-photo">
+            <img src="https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Smartwatch Image">
+            <a href="smartwatch.html" class="neon-button">Explore Smartwatches</a>
+        </div>
+        <div class="product-description">
+            <h1>Smartwatches</h1>
+            <p>Stay connected and track your fitness with the latest smartwatches. From health monitoring to stylish designs, find the perfect companion for your active lifestyle.</p>
+        </div>
+    </section>
+
+    <section class="product-info">
+        <div class="product-photo">
+            <img src="https://images.pexels.com/photos/1029757/pexels-photo-1029757.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Monitor Screen Image">
+            <a href="monitor.html" class="neon-button">Explore Monitors</a>
+        </div>
+        <div class="product-description">
+            <h1>Monitors</h1>
+            <p>Elevate your viewing experience with high-quality monitors. Whether for work or play, discover crisp visuals and immersive displays for enhanced productivity and entertainment.</p>
+        </div>
+    </section>
+
+    <!-- Add more sections for additional products -->
+
+</main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="social-media">
+                <a href="https://www.facebook.com/profile.php?id=61551896247723" target="_blank"><img src="asset/face.png" alt="Facebook"></a>
+                <a href="https://twitter.com/OneSlang_" target="_blank"><img src="asset/twitter.png" alt="Twitter"></a>
+                <a href="https://www.instagram.com/oneslang_official/" target="_blank"><img src="asset/insta.png" alt="Instagram"></a>
+                <a href="#" target="_blank"><img src="asset/link.png" alt="LinkedIn"></a>
+            </div>
+            <div class="company-info">
+                <h3>OneSlang</h3>
+                <p>Electronic City Bangalore</p>
+                <p>aspenterprisestm@gmail.com</p>
+                <p>Phone: +91 9019488586</p>
+            </div>
+            <div class="extra-info">
+                <p>&copy; 2023 OneSlang. All rights reserved.</p>
+                <p>Privacy Policy</p>
+                <p>Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+      <script>
+
+    const header = document.querySelector('header');
+    let lastScrollY = 0; // Store the last scroll position
+
+    window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY > lastScrollY) {
+            // Scrolling down
+            header.classList.add('hidden');
+        } else {
+            // Scrolling up
+            header.classList.remove('hidden');
+        }
+
+        lastScrollY = currentScrollY;
+    });
+
+  
+      </script>
+  
+</body>
+
+</html>

@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>Your Website</title>
+    <style>
+        /* Adding Poppins style */
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+        /* Whole page */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        /* Only body */
+        body {
+            height: 100vh;
+            width: 100%;
+            background-color: black;
+            display: flex;
+            flex-direction: column; /* Change to column to fix content layout */
+            align-items: flex-start; /* Change to flex-start to align content to the left */
+        }
+        .bg {
+    animation:slide 3s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, #030303 50%, rgb(31, 33, 33) 50%);
+    bottom:0;
+    left:-50%;
+    opacity:.5;
+    position:fixed;
+    right:-50%;
+    top:0;
+    z-index:-1;
+  }
+div
+{
+    word-wrap: break-word;
+}
+  .bg2 {
+    animation-direction:alternate-reverse;
+    animation-duration:4s;
+  }
+  
+  .bg3 {
+    animation-duration:3s;
+  }
+   @keyframes slide {
+    0% {
+      transform:translateX(-25%);
+    }
+    100% {
+      transform:translateX(25%);
+    }
+  }  
+
+
+        h1,
+        h2,
+        p,
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Making sidebar menu */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 110px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            background: linear-gradient(to left, rgba(0, 0, 0, 0.7), rgba(79, 79, 79, 0.4) 70%, rgba(208, 208, 208, 0));
+            transition: width 0.3s ease;
+            z-index: 2;
+        }
+
+        .sidebar:hover {
+            width: 260px;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(99, 99, 99, 0.4) 30%, rgba(197, 197, 197, 0));
+            z-index: 2;
+        }
+
+        /* Adding logo */
+        .sidebar .logo {
+            color: black;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 100px;
+            height: 100%;
+            border-radius: 50%;
+            transition: width 0.3s ease, height 0.3s ease;
+        }
+
+        .sidebar:hover .logo img {
+            display: block;
+            color: #ffffff;
+            width: 100px;
+            height: 100%;
+            margin-left: 0;
+            pointer-events: none;
+            margin-right: 80px;
+        }
+
+        /* Adding stuff to sidebar */
+        .sidebar .links {
+            list-style: none;
+            margin-top: 20px;
+            overflow-y: auto;
+            scrollbar-width: none;
+            height: calc(100% - 140px);
+            color: rgb(255, 255, 255);
+        }
+
+        .sidebar .links::-webkit-scrollbar {
+            display: none;
+        }
+
+        .links li {
+            display: flex;
+            border-radius: 4px;
+            align-items: center;
+        }
+
+        .links li:hover {
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .links h4 {
+            color: white;
+            font-weight: 500;
+            display: none;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .sidebar:hover .links h4 {
+            display: block;
+        }
+
+        .links hr {
+            margin: 10px 8px;
+            border: 1px solid #ffffff;
+        }
+
+        .sidebar:hover .links hr {
+            border-color: transparent;
+        }
+
+        .links li span {
+            padding: 12px 10px;
+        }
+
+        .links li a {
+            padding: 10px;
+            color: #ffffff;
+            display: none;
+            font-weight: 500;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+
+        .sidebar:hover .links li a {
+            display: block;
+            background: transparent;
+        }
+
+        .links .logout-link {
+            margin-top: 20px;
+        }
+
+        /* Making nav buttons and also changing colors */
+        .nav-button {
+            display: block;
+            padding: 10px 20px;
+            background-color: black;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease, padding 0.3s ease, font-size 0.3s ease;
+            text-align: center;
+        }
+
+        .nav-button:hover {
+            background-color: black;
+            padding: 12px 22px;
+            font-size: 20px;
+        }
+
+        /* Making side panels */
+        .links>li>ul {
+            position: absolute;
+            top: 10%;
+            left: 90%;
+            display: none;
+            background-color: transparent;
+            min-width: 200px;
+            min-height: 100%;
+            backdrop-filter: blur(20px);
+            z-index: 3;
+            border: none;
+        }
+
+        /* Style for the second-level dropdown menu */
+        .links>li>ul>li>ul {
+            position: absolute;
+            top: 10%;
+            left: 100%;
+            display: none;
+            background-color: transparent;
+            min-width: 200px;
+            border-radius: 4px;
+            min-height: 100%;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Show the dropdown menus on hover */
+        .links>li:hover>ul,
+        .links>li>ul>li:hover>ul {
+            display: block;
+        }
+
+        /* Style the dropdown menu items */
+        .links>li>ul>li,
+        .links>li>ul>li>ul>li {
+            display: block;
+            padding: 10px;
+        }
+
+        /* Style the dropdown menu links */
+        .links>li>ul>li>a,
+        .links>li>ul>li>ul>li>a {
+            color: white;
+            text-decoration: none;
+            white-space: nowrap;
+            margin-left: 50px;
+        }
+
+        /* Add a hover effect to the dropdown menu items */
+        .links>li>ul>li:hover,
+        .links>li>ul>li>ul>li:hover {
+            background-color: transparent;
+            width: 260px;
+            background: linear-gradient(to right, rgba(157, 138, 138, 0.7), rgba(157, 138, 138, 0.4) 30%, rgba(157, 138, 138, 0));
+        }
+
+        /* Writing code for background color and text color in the body */
+        :root {
+            --background: black;
+            --color: #FAFAFA;
+        }
+
+        /* Making logo which is at the rightmost corner */
+        .logo-right {
+            color: var(--color);
+            font-size: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            margin-right: 8px;
+        }
+
+        .right {
+            text-align: right;
+            width: 100%;
+        }
+
+        .stack {
+            display: grid;
+            grid-template-columns: 1fr;
+            z-index: 2;
+        }
+
+        .stack span {
+            font-weight: bold;
+            grid-row-start: 1;
+            grid-column-start: 1;
+            font-size: 3rem;
+            --stack-height: calc(100% / var(--stacks) - 1px);
+            --inverse-index: calc(calc(var(--stacks) - 1) - var(--index));
+            --clip-top: calc(var(--stack-height) * var(--index));
+            --clip-bottom: calc(var(--stack-height) * var(--inverse-index));
+            clip-path: inset(var(--clip-top) 0 var(--clip-bottom) 0);
+            animation: stack 340ms cubic-bezier(.46, .29, 0, 1.24) 1 backwards calc(var(--index) * 120ms), glitch 2s ease infinite 2s alternate-reverse;
+        }
+
+        .stack span:nth-child(odd) {
+            --glitch-translate: 8px;
+        }
+
+        .stack span:nth-child(even) {
+            --glitch-translate: -8px;
+        }
+
+        @keyframes stack {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%);
+                text-shadow: -2px 3px 0 red, 2px -3px 0 blue;
+            }
+
+            60% {
+                opacity: 0.5;
+                transform: translateX(50%);
+            }
+
+            80% {
+                transform: none;
+                opacity: 1;
+                text-shadow: 2px -3px 0 red, -2px 3px 0 blue;
+            }
+
+            100% {
+                text-shadow: none;
+            }
+        }
+
+        @keyframes glitch {
+            0% {
+                text-shadow: -2px 3px 0 red, 2px -3px 0 blue;
+                transform: translate(var(--glitch-translate));
+            }
+
+            2% {
+                text-shadow: 2px -3px 0 red, -2px 3px 0 blue;
+            }
+
+            4%,
+            100% {
+                text-shadow: none;
+                transform: none;
+            }
+        }
+
+        /* Taking above header */
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0px;
+            width: 100%;
+            display: flex;
+            background-color: rgb(219, 207, 207);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(110, 110, 110, 0.4) 70%, rgba(211, 211, 211, 0.164));
+            transition: width 0.3s ease;
+            z-index: 1;
+            /* Place it above other elements */
+            display: flex;
+            justify-content: space-between;
+            /* Align elements to the right */
+            align-items: center;
+            transition: transform 0.3s ease-in-out;
+    transform: translateY(0);
+        }
+        /* Add CSS for the hidden header state */
+header.hidden {
+    transform: translateY(-100%);
+}
+
+        /* Adjust the logo-right position to accommodate the header */
+        .stack {
+            position: relative;
+            --stacks: 3;
+            margin-left: 10px;
+            align-items: right;
+        }
+
+        .container {
+            max-width: 5000px;
+            /* Adjust the max width as needed */
+            margin: 0px auto;
+            /* Center the container horizontally and set top margin */
+            padding: 0px;
+            /* Add padding as needed */
+            height: calc(100% - 150px);
+            /* Adjust the height based on header size */
+            outline: none;
+        }
+
+        .co {
+            position: relative;
+            display: flex;
+            color: #FAFAFA;
+        }
+
+        .search-container {
+            overflow: hidden;
+            float: right;
+            height: 4em;
+            width: 4em;
+            border-radius: 2em;
+            box-shadow: 0 0 5px #000000;
+            -moz-transition: all 0.35s;
+            -webkit-transition: all 0.35s;
+        }
+
+        .search-container:hover,
+        .search-container:focus,
+        .search-container:focus-within {
+            width: 25em;
+            border-radius: 5px 2em 2em 5px;
+            outline: none;
+        }
+
+        .search-container:hover input,
+        .search-container:focus input,
+        .search-container:focus-within input {
+            display: inline-block;
+            width: 19em;
+            padding: 10px;
+        }
+
+        input {
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            appearance: none;
+            float: left;
+            width: 0em;
+            height: 2em;
+            margin: 1em;
+            margin-right: -4.5em;
+            background: #fff;
+            color: #000000;
+            font-size: 1em;
+            font-weight: 500;
+            padding: 0px;
+            border: 0;
+            border-radius: 5px;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2) inset;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+            -moz-transition: all 0.25s;
+            -webkit-transition: all 0.25s;
+        }
+
+        input:focus {
+            outline: none;
+            box-shadow: 0 -1px 1px rgba(255, 255, 255, 0.25), 0 1px 5px rgba(0, 0, 0, 0.15);
+    }
+
+    .button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      float: right;
+      width: 1.75em;
+      height: 1.75em;
+      margin: 0.125em;
+      background: #000000;
+      text-align: center;
+      font-size: 2em;
+      color: #FDF6E3;
+      border-radius: 50%;
+      box-shadow: 0 -1px 1px rgba(255, 255, 255, 0.25), 0 1px 1px rgba(0, 0, 0, 0.25);
+      text-shadow: 0 -2px 1px rgba(0, 0, 0, 0.3);
+    }
+
+    .button:active {
+      border: 0 !important;
+      text-shadow: 0 0 0;
+    }
+
+    .button i {
+      font-size: 85%;
+    }
+
+    .header-text {
+      font-size: 20px;
+      /* Adjust the font size as needed */
+      color: white;
+      /* Text color */
+      margin-left: 20px;
+      /* Adjust the margin as needed */
+      font-weight: bold;
+      /* Optionally, set the font weight */
+    }
+    .main-content {
+  margin: 20px; /* Adjust margin as needed */
+  color: white; /* Text color */
+  font-size: 18px; /* Adjust the font size as needed */
+  text-align: left; /* Adjust text alignment as needed */
+  left:  130px;
+}
+
+/* Style for the text within the main content section */
+.main-content p {
+  margin-top: 100px; /* Adjust margin as needed */
+  font-weight: bold; /* Optionally, set the font weight */
+  margin-left: 130px;
+}
+main {
+    width: 80%;
+    margin: 0 auto;
+    background:    rgba(15, 15, 15, 0.5);
+    padding: 20px;
+    border: 2px solid #343434;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 130px;
+}
+.product-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5); /* Use an RGBA color with an alpha value for transparency */
+    position: relative;
+    padding-bottom: 40px;
+     border: 2px solid #c7c7c7;
+     border-radius: 20px;
+     transition: border-width 0.5s;
+     padding: 40px;
+     margin: 10px;
+
+}
+  .product-info:hover {
+            border-width: 10px;
+        }
+    
+.product-photo {
+
+     max-width: 25%;
+    max-height:15%;
+    float: left;
+    position: relative;
+}
+.product-photo img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 80%;
+    float: left;
+    transition: transform 0.3s ease-in-out; /* Add a transition for the transform property */
+
+}
+
+.product-photo img:hover {
+    transform: scale(1.1); /* Increase the scale on hover to make it appear larger */
+}
+h1 {
+    color: rgb(254, 192, 106);
+}
+
+.product-photo img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+    float: left; /* Add this line to float the image to the left */
+}
+/* Your existing CSS styles here */
+
+/* Add styles for the neon button */
+.neon-button {
+    display: inline-block;
+    background: linear-gradient(to right, #ff6ec4, #7873f5);
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 25px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(255, 110, 196, 0.5);
+    align-self: auto;
+    margin-top: 10%;
+}
+a
+{
+    text-decoration: none;
+}
+/* Add hover effect for the button */
+.neon-button:hover {
+    background: linear-gradient(to right, #7873f5, #ff6ec4);
+    box-shadow: 0 0 10px rgba(255, 110, 196, 0.8);
+    text-decoration: none;
+}
+
+.product-description {
+    flex: 2;
+    padding: 20px;
+    word-wrap: break-word;
+    max-width: 60%;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 150px;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+  }
+  table {
+    border: 1px solid;
+  }
+
+
+footer {
+    background:  linear-gradient(rgba(49, 47, 47, 0.7), rgba(0, 0, 0, 0.2));
+    color: #957c7c;
+    padding: 20px 0;
+    margin-top: 20px;
+    position: relative;
+    border: none; /* Remove the default border */
+    margin-left: 200px;
+    padding-bottom: 20px;
+    border: 2px solid #343434;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 1000px;
+ 
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.social-media a {
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.social-media img {
+    width: 30px; /* Adjust the size of social media icons as needed */
+    height: 30px;
+}
+
+.company-info h3 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.extra-info p {
+    margin: 5px 0;
+}
+
+.table {
+    width: 80%;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    border-color: #957c7c;
+
+}
+.h1{
+    text-align: center;
+}
+p,td,th, h2 {
+    color: #ffffff; /* Default color (black in this example) */
+  
+}
+.h1 {
+    display: flex;
+    margin-left: 38%;
+}
+
+
+
+    
+  </style>
+</head>
+
+<body>
+   <div class="bg"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="asset/ONESLANG (1).gif" alt="logo" />
+      </div>
+      <ul class="links">
+        <h4> Main Menu
+        </h4>
+        <li>
+          <span class="material-symbols-outlined">dashboard</span>
+          <a href="home.html" class="nav-button">Dashboard</a>
+        </li>
+        <li>
+          <span class="material-symbols-outlined">trending_up</span>
+          <a href="trend.html" class="nav-button">Trending</a>
+        </li>
+        <li>
+          <span class="material-symbols-outlined">forum</span>
+          <a href="feed.html" class="nav-button">Feedback</a>
+        </li>
+        <hr />
+        <h4>Niche</h4>
+        <li>
+          <span class="material-symbols-outlined">devices</span>
+          <a href="technology.html" class="nav-button">Technology</a>
+        </li>
+        <li>
+          <span class="material-symbols-outlined">styler</span>
+          <a href="style.html" class="nav-button">Styles</a>
+        </li>
+        <li>
+          <span class="material-symbols-outlined">sports_cricket</span>
+          <a href="sports.html" class="nav-button">Sports</a>
+        </li>
+        <li>
+          <span class="material-symbols-outlined">local_mall</span>
+          <a href="Accesories.html" class="nav-button">Accessories</a>
+        </li>
+        <li>
+          <span class="material-symbols-outlined">sports_cricket</span>
+          <a href="Health.html" class="nav-button">Health/beauty</a>
+        </li>
+        <li>
+          <span class="material-symbols-outlined">Money</span>
+          <a href="Money.html" class="nav-button">Make Money</a>
+        </li>
+        <hr />
+        <h4>Account</h4>
+        <li>
+          <span class="material-symbols-outlined">bar_chart</span>
+          <a href="#" class="nav-button">Overview</a>
+        </li>
+        <li>
+          <span class="material-symbols-outlined">mail</span>
+          <a href="#" class="nav-button">Inbox</a>
+        </li>
+        <li>
+          <span class="material-symbols-outlined">settings</span>
+          <a href="#" class="nav-button">Settings</a>
+        </li>
+        <li class="logout-link">
+          <span class="material-symbols-outlined">logout</span>
+          <a href="#" class="nav-button">Logout</a>
+        </li>
+      </ul>
+    </aside>
+  
+
+
+  <!-- Main content section -->
+  <!-- Header -->
+  <header>
+    <div id="header">
+      <div class='container' tabindex='1'>
+        <div class='search-container' tabindex='1'>
+          <input placeholder='search' type='text'>
+          <a class='button'>
+            <i class='fa fa-search'></i>
+          </a>
+        </div>
+      </div>
+      <div class="header-text">
+        <div class="logo-right">
+
+          <div class="stack" style="--stacks: 3;">
+            <span style="--index: 0;">OneSlang</span>
+            <span style="--index: 1;">OneSlang</span>
+            <span style="--index: 2;">OneSlang</span>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+ 
+  <main>
+
+    <h1>Sports</h1>
+    <section class="product-info">
+        <div class="product-photo">
+            <img src="https://images.pexels.com/photos/5519470/pexels-photo-5519470.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Cricket Image">
+            <a href="cricket.html" class="neon-button">Explore Cricket</a>
+        </div>
+        <div class="product-description">
+            <h1>Cricket</h1>
+            <p>Immerse yourself in the excitement of cricket in India. From thrilling matches to iconic players, experience the passion and energy that cricket brings to the nation.</p>
+        </div>
+    </section>
+    
+    <section class="product-info">
+        <div class="product-photo">
+            <img src="https://images.pexels.com/photos/163526/field-hockey-player-girls-game-163526.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Hockey Image">
+            <a href="hockey.html" class="neon-button">Explore Hockey</a>
+        </div>
+        <div class="product-description">
+            <h1>Hockey</h1>
+            <p>Dive into the world of hockey, a sport deeply rooted in India's history. Discover the fast-paced action, skilled players, and the rich legacy of hockey in the country.</p>
+        </div>
+    </section>
+
+    <section class="product-info">
+        <div class="product-photo">
+            <img src="data:image/jpeg;base64,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" alt="Kabaddi Image">
+            <a href="kabaddi.html" class="neon-button">Discover Kabaddi</a>
+        </div>
+        <div class="product-description">
+            <h1>Kabaddi</h1>
+            <p>Experience the thrill of kabaddi, a traditional Indian sport that combines strength, strategy, and agility. Explore the popularity and cultural significance of kabaddi in the sports landscape.</p>
+        </div>
+    </section>
+
+    <section class="product-info">
+        <div class="product-photo">
+            <img src="https://images.pexels.com/photos/701773/pexels-photo-701773.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Football Image">
+            <a href="football.html" class="neon-button">Explore Football</a>
+        </div>
+        <div class="product-description">
+            <h1>Football</h1>
+            <p>Kick into the world of football in India. From local leagues to international fandom, discover the passion for football and the growing influence of the sport in the country.</p>
+        </div>
+    </section>
+
+    <section class="product-info">
+        <div class="product-photo">
+            <img src="https://images.pexels.com/photos/5767580/pexels-photo-5767580.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Badminton Image">
+            <a href="badminton.html" class="neon-button">Explore Badminton</a>
+        </div>
+        <div class="product-description">
+            <h1>Badminton</h1>
+            <p>Swoosh into the world of badminton, a sport of finesse and speed. Learn about the rising stars and the badminton culture that has captivated enthusiasts across the country.</p>
+        </div>
+    </section>
+
+    <section class="product-info">
+        <div class="product-photo">
+            <img src="https://images.pexels.com/photos/15153691/pexels-photo-15153691/free-photo-of-two-men-wrestling-on-a-mat.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Wrestling Image">
+            <a href="wrestling.html" class="neon-button">Discover Wrestling</a>
+        </div>
+        <div class="product-description">
+            <h1>Wrestling</h1>
+            <p>Enter the arena of wrestling, a sport that showcases strength and technique. Explore the traditions and achievements of Indian wrestlers who have made a mark on the global stage.</p>
+        </div>
+    </section>
+
+    <!-- Add more sections for additional sports -->
+
+</main>
+
+  
+
+<footer>
+  <div class="footer-content">
+      <div class="social-media">
+          <a href="https://www.facebook.com/profile.php?id=61551896247723" target="_blank"><img src="asset/face.png" alt="Facebook"></a>
+          <a href="https://twitter.com/OneSlang_" target="_blank"><img src="asset/twitter.png" alt="Twitter"></a>
+          <a href="https://www.instagram.com/oneslang_official/" target="_blank"><img src="asset/insta.png" alt="Instagram"></a>
+          <a href="#" target="_blank"><img src="asset/link.png" alt="LinkedIn"></a>
+      </div>
+      <div class="company-info">
+          <h3>OneSlang</h3>
+          <p>Electronic City Bangalore</p>
+          <p>aspenterprisestm@gmail.com</p>
+          <p>Phone: +91 9019488586</p>
+      </div>
+      <div class="extra-info">
+          <p>&copy; 2023 OneSlang. All rights reserved.</p>
+          <p>Privacy Policy</p>
+          <p>Terms of Service</p>
+      </div>
+  </div>
+</footer>
+
+      <script>
+
+    const header = document.querySelector('header');
+    let lastScrollY = 0; // Store the last scroll position
+
+    window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY > lastScrollY) {
+            // Scrolling down
+            header.classList.add('hidden');
+        } else {
+            // Scrolling up
+            header.classList.remove('hidden');
+        }
+
+        lastScrollY = currentScrollY;
+    });
+
+  
+      </script>
+  
+</body>
+
+</html>

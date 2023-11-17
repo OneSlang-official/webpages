@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        
+body {
+            height: 100vh;
+            width: 100%;
+            background-color: black;
+            display: flex;
+            flex-direction: column; /* Change to column to fix content layout */
+            align-items: flex-start; /* Change to flex-start to align content to the left */
+        }
+        .bg {
+    animation:slide 3s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, #030303 50%, rgb(31, 33, 33) 50%);
+    bottom:0;
+    left:-50%;
+    opacity:.5;
+    position:fixed;
+    right:-50%;
+    top:0;
+    z-index:-1;
+  }
+div
+{
+    word-wrap: break-word;
+}
+  .bg2 {
+    animation-direction:alternate-reverse;
+    animation-duration:4s;
+  }
+  
+  .bg3 {
+    animation-duration:3s;
+  }
+   @keyframes slide {
+    0% {
+      transform:translateX(-25%);
+    }
+    100% {
+      transform:translateX(25%);
+    }
+  }  
+
+  header {
+    background: linear-gradient(rgba(49, 47, 47, 0.7), rgba(0, 0, 0, 0.2));
+    color: #ffffff;
+    text-align: center;
+    padding: 10px;
+    border: none;
+}
+
+header h1 {
+    margin: 0; /* Remove margin from h1 to center text vertically */
+    color: #ffffff;
+}
+   
+footer {
+    background:  linear-gradient(rgba(49, 47, 47, 0.7), rgba(0, 0, 0, 0.2));
+    color: #957c7c;
+    padding: 20px 0;
+    margin-top: 20px;
+    position: relative;
+    border: none; /* Remove the default border */
+    margin-left: 200px;
+    padding-bottom: 20px;
+    border: 2px solid #343434;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 1000px;
+ 
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.social-media a {
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.social-media img {
+    width: 30px; /* Adjust the size of social media icons as needed */
+    height: 30px;
+}
+
+.company-info h3 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.extra-info p {
+    margin: 5px 0;
+}
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    color: #fff;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.question {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #111010;
+    border-radius: 3px;
+    resize: vertical;
+}
+
+button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#feedbackMessage {
+    text-align: center;
+    margin-top: 20px;
+    display: none;
+}
+
+
+
+    </style>
+</head>
+<body>
+
+    <div class="bg"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
+
+    <header>
+       
+        <h1>OneSlang</h1>
+
+
+    </header>
+
+    <h1>Feedback Form</h1>
+    <form id="feedbackForm">
+        <div class="question">
+            <label for="q1">Question 1: How was the service?</label>
+            <input type="radio" name="q1" value="excellent"> Excellent
+            <input type="radio" name="q1" value="good"> Good
+            <input type="radio" name="q1" value="average"> Average
+            <input type="radio" name="q1" value="poor"> Poor
+        </div>
+        <div class="question">
+            <label for="q2">Question 2: Was the website user-friendly?</label>
+            <input type="radio" name="q2" value="yes"> Yes
+            <input type="radio" name="q2" value="no"> No
+        </div>
+        <div class="question">
+            <label for="q3">Question 3: Any additional comments or suggestions?</label>
+            <textarea name="q3" rows="4" cols="50"></textarea>
+        </div>
+        <div class="question">
+            <label for="q4">Question 4: Would you recommend our service to others?</label>
+            <input type="radio" name="q4" value="yes"> Yes
+            <input type="radio" name="q4" value="no"> No
+        </div>
+        <div class="question">
+            <label for="q5">Question 5: How can we improve our service?</label>
+            <input type="text" name="q5" />
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="feedbackMessage"></div>
+    
+</body>
+</html>

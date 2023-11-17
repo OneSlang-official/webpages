@@ -1,0 +1,237 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: black;
+     opacity: 0.8; 
+}
+.bg {
+    animation:slide 3s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, #030303 50%, rgb(31, 33, 33) 50%);
+    bottom:0;
+    left:-50%;
+    opacity:.5;
+    position:fixed;
+    right:-50%;
+    top:0;
+    z-index:-1;
+  }
+div
+{
+    word-wrap: break-word;
+}
+  .bg2 {
+    animation-direction:alternate-reverse;
+    animation-duration:4s;
+  }
+  
+  .bg3 {
+    animation-duration:3s;
+  }
+  
+  
+  @keyframes slide {
+    0% {
+      transform:translateX(-25%);
+    }
+    100% {
+      transform:translateX(25%);
+    }
+  }  
+
+header {
+    background:  linear-gradient(rgba(49, 47, 47, 0.7), rgba(0, 0, 0, 0.2));
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    border: none;
+}
+
+main {
+    width: 80%;
+    margin: 0 auto;
+    background:    rgba(15, 15, 15, 0.5);
+    padding: 20px;
+    border: 2px solid #343434;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+.product-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5); /* Use an RGBA color with an alpha value for transparency */
+}
+
+
+.product-photo {
+    flex: 1;
+    margin-bottom: 80%;
+}
+.product-photo img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 80%;
+    float: left;
+    transition: transform 0.3s ease-in-out; /* Add a transition for the transform property */
+}
+
+.product-photo img:hover {
+    transform: scale(1.1); /* Increase the scale on hover to make it appear larger */
+}
+h1 {
+    color: rgb(254, 192, 106);
+}
+
+.product-photo img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+    float: left; /* Add this line to float the image to the left */
+}
+
+
+/* Your existing CSS styles here */
+
+/* Add styles for the neon button */
+.neon-button {
+    display: inline-block;
+    background: linear-gradient(to right, #ff6ec4, #7873f5);
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 25px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(255, 110, 196, 0.5);
+    margin-left: 35%;
+    margin-top: 10%;
+}
+a
+{
+    text-decoration: none;
+}
+/* Add hover effect for the button */
+.neon-button:hover {
+    background: linear-gradient(to right, #7873f5, #ff6ec4);
+    box-shadow: 0 0 10px rgba(255, 110, 196, 0.8);
+    text-decoration: none;
+}
+
+
+.product-description {
+    flex: 2;
+    padding: 20px;
+    word-wrap: break-word;
+    max-width: 60%;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 150px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+li {
+    margin: 0 30px;
+}
+th, td {
+    padding: 15px;
+    text-align: left;
+  }
+  table {
+    border: 1px solid;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    position: relative;
+}
+
+a:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 3px; /* Adjust the thickness of the underline as needed */
+    background-color: #5b3e00; /* Adjust the underline color as needed */
+    bottom: -4px;
+    left: 0;
+    transition: width 0.6s ease-in-out; /* Adjust the animation duration as needed */
+}
+
+a:hover:after {
+    width: 100%;
+    right: 0;
+    left: auto;
+}
+
+
+footer {
+    background:  linear-gradient(rgba(49, 47, 47, 0.7), rgba(0, 0, 0, 0.2));
+    color: #957c7c;
+    padding: 20px 0;
+    margin-top: 20px;
+    position: relative;
+    border: none; /* Remove the default border */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.social-media a {
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.social-media img {
+    width: 30px; /* Adjust the size of social media icons as needed */
+    height: 30px;
+}
+
+.company-info h3 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.extra-info p {
+    margin: 5px 0;
+}
+
+.table {
+    width: 80%;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    border: 2px solid #000000;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    border-color: #957c7c;
+
+}
+p,td,th, h2 {
+    color: #ffffff; /* Default color (black in this example) */
+  
+}
+.h1 {
+    display: flex;
+    margin-left: 38%;
+}
